@@ -98,4 +98,4 @@ pipelines:
         onComplete:
           - echo "Cleaning up some stuff"
         onCancel:
-          - echo "Someone cancelled the jobsssss"
+          - echo "Someone cancelled the jobssssss"
