@@ -1,8 +1,8 @@
 resources:
-   - name: sample_java_repo_test
+   - name: sample_node_repo_test
      type: gitRepo
      integrationName: github-subint
-     repoPath: ankul-shippable/sample_java
+     repoPath: ankul-shippable/sample_node
      configuration:
         branches:
            except: "*test"
@@ -82,7 +82,7 @@ pipelines:
               - github-subint
           trigger:
             resources:
-              - sample_java_repo_test
+              - sample_node_repo_test
             steps:
               - in_trigger_step
               #- in_trigger_step_2
