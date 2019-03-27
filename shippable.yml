@@ -58,7 +58,7 @@ pipelines:
           - echo "executing task command 1"
           - echo "executing task command 2"
 
-      - name: main_step
+      - name: main_step_2
         type: runSh
         group: test_group 
         syntaxVersion: "2018-03-12"
