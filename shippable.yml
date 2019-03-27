@@ -85,7 +85,7 @@ pipelines:
               - sample_node_repo_test
             steps:
               - in_trigger_step
-              - in_trigger_step_2
+              #- in_trigger_step_2
         onStart:
           - echo "Prepping build environment"
         onExecute:
