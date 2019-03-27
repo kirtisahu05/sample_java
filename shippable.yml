@@ -15,7 +15,7 @@ resources:
         buildOnPullRequestClose: false
         buildOnRelease: true
         buildOnTagPush: false
-        buildOnFileCommit: "*test"
+        buildOnFileCommit: "*test2"
         shallowDepth: 2
         gitConfig: 
           - dont_know
