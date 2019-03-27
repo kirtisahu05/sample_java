@@ -1,3 +1,28 @@
+resources:
+   - name: sample_node_repo_test
+     type: gitRepo
+     integrationName: github-subint
+     repoPath: ankul-shippable/sample_node
+     configuration:
+        branches:
+           except: "*test"
+           only: "master*"
+        tags:
+           except: none
+           only: none   
+        buildOnCommit: true
+        buildOnPullRequest: false
+        buildOnPullRequestClose: false
+        buildOnRelease: true
+        buildOnTagPush: false
+        buildOnFileCommit: "*test2"
+        shallowDepth: 2
+        gitConfig: 
+          - dont_know
+          - dont_know_2
+     initialVersion:
+       sha: master
+
 pipelines:
   - name: test_pipeline_1
     steps:
