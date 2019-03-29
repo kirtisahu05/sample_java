@@ -22,34 +22,6 @@ resources:
           - dont_know_2
      initialVersion:
        sha: master
-   - name: sample_java_file_test
-     type: file
-     fileUrl: text.js
-     configuration:
-        integrationName: docker-int
-     initialVersion:
-       fileName: test
-       fileDtTm: test
-   - name: sample_java_image_test
-     type: image
-     imageName: "library/nginx"
-     configuration:
-       integrationName: docker-int
-     initialVersion:
-       imageTag: latest
-   - name: sample_java_webhook_test
-     type: webhook
-     configuration:
-       integrationName: github-subint
-     initialVersion:
-       payload: <string>
-   - name: sample_java_kube_test
-     type: cluster
-     configuration:
-       integrationName: kubeIntegration
-       bastionHostIP: 1.2.3.4
-       bastionUser: sshUser
-       bastionIntegrationName: sshKey-int
        
 pipelines:
   - name: test_pipeline_1
@@ -125,6 +97,3 @@ pipelines:
             - echo "Cleaning up some stuff"
           onCancel:
             - echo "Someone cancelled the job"
-        outputResources:
-          - sample_java_file_test
-          - sample_java_webhook_test
