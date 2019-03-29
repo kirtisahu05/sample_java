@@ -1,27 +1,27 @@
 resources:
-   - name: sample_node_repo
-     type: gitRepo
-     repoPath: ankul-shippable/sample_node
-     configuration:
-        integrationName: github-subint
-        branches:
-           except: "*test"
-           only: "master*"
-        tags:
-           except: none
-           only: none   
-        buildOnCommit: true
-        buildOnPullRequest: false
-        buildOnPullRequestClose: false
-        buildOnRelease: true
-        buildOnTagPush: false
-        buildOnFileCommit: "*test"
-        shallowDepth: 2
-        gitConfig: 
-          - dont_know
-          - dont_know_2
-     initialVersion:
-       sha: master
+  - name: sample_node_repo
+    type: gitRepo
+    repoPath: ankul-shippable/sample_node
+    configuration:
+      integrationName: github-subint
+      branches:
+        except: "*test"
+        only: "master*"
+      tags:
+        except: none
+        only: none   
+      buildOnCommit: true
+      buildOnPullRequest: false
+      buildOnPullRequestClose: false
+      buildOnRelease: true
+      buildOnTagPush: false
+      buildOnFileCommit: "*test"
+      shallowDepth: 2
+      gitConfig: 
+        - dont_know
+        - dont_know_2
+    initialVersion:
+      sha: master
        
 pipelines:
   - name: test_pipeline_1
