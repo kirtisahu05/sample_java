@@ -1,9 +1,9 @@
 resources:
-   - name: sample_node_repo_test
+   - name: sample_java_repo_test
      type: gitRepo
-     integrationName: github-subint
-     repoPath: ankul-shippable/sample_node
+     repoPath: deepikasl/sample_java
      configuration:
+        integrationName: github-subint
         branches:
            except: "*test"
            only: "master*"
@@ -15,22 +15,78 @@ resources:
         buildOnPullRequestClose: false
         buildOnRelease: true
         buildOnTagPush: false
-        buildOnFileCommit: "*test2"
+        buildOnFileCommit: "*test"
         shallowDepth: 2
         gitConfig: 
           - dont_know
           - dont_know_2
      initialVersion:
        sha: master
-
+   - name: sample_java_file_test
+     type: file
+     fileUrl: text.js
+     configuration:
+        integrationName: docker-int
+     initialVersion:
+       fileName: test
+       fileDtTm: test
+   - name: sample_java_image_test
+     type: image
+     imageName: "library/nginx"
+     configuration:
+       integrationName: docker-int
+     initialVersion:
+       imageTag: latest
+   - name: sample_java_webhook_test
+     type: webhook
+     configuration:
+       integrationName: github-subint
+     initialVersion:
+       payload: <string>
+   - name: sample_java_kube_test
+     type: cluster
+     configuration:
+       integrationName: kubeIntegration
+       bastionHostIP: 1.2.3.4
+       bastionUser: sshUser
+       bastionIntegrationName: sshKey-int
+       
 pipelines:
-      - name: test_step_1
+  - name: test_pipeline_1
+    setup:
+      environmentVariables:
+        normal:
+          - ENV1: value-pipe-1
+          - ENV2: value-pipe-2
+        encrypted:
+          - SECURE_ENV1: test_value-pipe-1
+          - SECURE_ENV2: test_value-pipe-2
+      runtime: onHost-pipe
+    steps:
+      - name: in_trigger_step
         type: runSh
-        # used to control steps that need to execute within a VM context
         configuration:
-          affinityGroup: bldGroup 
-          priority: 1
-          timeoutSeconds: 6000000
+          affinityGroup: test_group 
+        setup:
+          environmentVariables:
+            normal:
+              - ENV1: value1
+              - ENV2: value2
+            encrypted:
+              - SECURE_ENV1: test_value
+              - SECURE_ENV2: test_value
+          runtime: onHost
+        execution:
+          onExecute:
+            - echo "executing task command 1"
+            - echo "executing task command 2"
+
+      - name: main_step
+        type: runSh
+        configuration:
+          affinityGroup: test_group 
+          priority: 9999
+          timeoutSeconds: 40
           cache: true
         setup:
           environmentVariables:
@@ -38,24 +94,23 @@ pipelines:
               - ENV1: value1
               - ENV2: value2
             encrypted:
-              - SECURE_ENV1: <encrypted secure env value>
-              - SECURE_ENV2: <encrypted secure env value>
-          runtime: <image/host>
-          image: repo
-            auto:
-              language: c#
-              versions: latest
-            custom:
-              name: repo/img
-              tag: latest
-              options: none
+              - SECURE_ENV1: test_value
+              - SECURE_ENV2: test_value
+          runtime: onHost
         requires:
+          #resources:
+           # - someStateResource
+            #- someVersionResource
+          #steps:
+           # - nightlyJob
+            #- cronJob
           integrations:
             - github-subint
-      
         triggeredBy:
           resources:
-            - sample_node_repo_test
+            - sample_java_repo_test
+          steps:
+            - in_trigger_step
         execution:
           onStart:
             - echo "Prepping build environment"
@@ -68,3 +123,8 @@ pipelines:
             - echo "uh oh, something went wrong"
           onComplete: #always
             - echo "Cleaning up some stuff"
+          onCancel:
+            - echo "Someone cancelled the job"
+        outputResources:
+          - sample_java_file_test
+          - sample_java_webhook_test
