@@ -1,7 +1,7 @@
 resources:
-   - name: sample_java_repo_test
+   - name: sample_node_repo
      type: gitRepo
-     repoPath: deepikasl/sample_java
+     repoPath: ankul-shippable/sample_node
      configuration:
         integrationName: github-subint
         branches:
@@ -80,7 +80,7 @@ pipelines:
             - github-subint
         triggeredBy:
           resources:
-            - sample_java_repo_test
+            - sample_node_repo
           steps:
             - in_trigger_step
         execution:
