@@ -23,17 +23,17 @@ resources:
     initialVersion:
       sha: master
 
-   - name: file_res
-     type: file
-     fileUrl: https://github.com/ankul-shippable/sample_java/blob/master/shippable.yml
-     configuration:
-        integrationName: github-int
-     initialVersion:
-       fileName: shippable.yml
-       fileDtTm: random_value
+  - name: file_res
+    type: file
+    fileUrl: https://github.com/ankul-shippable/sample_java/blob/master/shippable.yml
+    configuration:
+      integrationName: github-int
+    initialVersion:
+      fileName: shippable.yml
+      fileDtTm: random_value
  
-   - name: state_res
-     type: state
+  - name: state_res
+    type: state
 
 pipelines:
   - name: pipe_1
