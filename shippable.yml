@@ -32,13 +32,13 @@ resources:
       fileName: shippable.yml
       fileDtTm: random_value
  
-   - name: image_res
-     type: image
-     imageName: "library/nginx"
-     configuration:
-       integrationName: docker-int
-     initialVersion:
-       imageTag: latest
+  - name: image_res
+    type: image
+    imageName: "library/nginx"
+    configuration:
+      integrationName: docker-int
+    initialVersion:
+      imageTag: latest
 
 pipelines:
   - name: pipe_1
