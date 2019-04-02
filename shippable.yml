@@ -63,7 +63,7 @@ pipelines:
           onExecute:
             - echo "executing..."
         outputResources:
-          #- file_res
+          - file_res
 
       - name: step1_B
         type: runSh
