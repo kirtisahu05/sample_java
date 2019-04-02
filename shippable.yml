@@ -54,6 +54,7 @@ pipelines:
         requires:
           integrations:
             - docker-int
+            - xyz
           resources:
             - image_res
         triggeredBy:
