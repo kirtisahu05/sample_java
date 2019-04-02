@@ -72,7 +72,7 @@ pipelines:
         setup:
           runtime: onHost
         triggeredBy:
-          step:
+          steps:
             - file_res 
         execution:
           onExecute:
