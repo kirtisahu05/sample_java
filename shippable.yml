@@ -25,21 +25,13 @@ resources:
 
    - name: file_res
      type: file
-     fileUrl: text.js
+     fileUrl: https://github.com/ankul-shippable/sample_java/blob/master/shippable.yml
      configuration:
-        integrationName: docker-int
+        integrationName: github-int
      initialVersion:
-       fileName: test
-       fileDtTm: test
-    
-   - name: image_res
-     type: image
-     imageName: "library/nginx"
-     configuration:
-       integrationName: docker-int
-     initialVersion:
-       imageTag: latest
-       
+       fileName: shippable.yml
+       fileDtTm: random_value
+ 
    - name: state_res
      type: state
 
@@ -56,7 +48,6 @@ pipelines:
           integrations:
             - docker-int
           resources:
-            - image_res
             - file_res
         triggeredBy:
           resources:
