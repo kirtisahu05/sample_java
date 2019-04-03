@@ -5,8 +5,8 @@ resources:
     configuration:
       integrationName: github-int
       branches:
-        except: "*test"
-        only: "master*"
+        except: test
+        only: master
       tags:
         except: none
         only: none   
