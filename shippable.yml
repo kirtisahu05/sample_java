@@ -77,3 +77,16 @@ pipelines:
         execution:
           onExecute:
             - echo "executing..."
+
+      - name: step1_C
+        type: runSh
+        configuration:
+          affinityGroup: test_group      
+        setup:
+          runtime: onHost
+        triggeredBy:
+          steps:
+            - step1_A 
+        execution:
+          onExecute:
+            - echo "executing..."
