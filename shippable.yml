@@ -5,21 +5,7 @@ resources:
     configuration:
       integrationName: github-int
       branches:
-        except: test
-        only: master
-      tags:
-        except: none
-        only: none   
-      buildOnCommit: true
-      buildOnPullRequest: false
-      buildOnPullRequestClose: false
-      buildOnRelease: true
-      buildOnTagPush: false
-      buildOnFileCommit: "*test"
-      shallowDepth: 2
-      gitConfig: 
-        - dont_know
-        - dont_know_2
+        except: random
     initialVersion:
       sha: master
 
