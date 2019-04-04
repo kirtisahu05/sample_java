@@ -46,7 +46,7 @@ pipelines:
       runtime: onHost
     steps:
       - name: step1_A
-        type: runSh
+        type: bash
         configuration:
           affinityGroup: test_group 
         setup:
@@ -66,7 +66,7 @@ pipelines:
           - file_res
 
       - name: step1_B
-        type: runSh
+        type: bash
         configuration:
           affinityGroup: test_group      
         setup:
@@ -79,7 +79,7 @@ pipelines:
             - echo "executing..."
 
       - name: step1_C
-        type: runSh
+        type: bash
         configuration:
           affinityGroup: test_group      
         setup:
